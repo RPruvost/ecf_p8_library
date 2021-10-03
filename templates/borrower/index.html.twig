@@ -45,4 +45,7 @@
     {% if is_granted('ROLE_ADMIN')%}
         <a href="{{ path('borrower_new') }}">Create new</a>
     {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+    {{ knp_pagination_render(borrowers) }}
+    {% endif %}
 {% endblock %}

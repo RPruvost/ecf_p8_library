@@ -29,7 +29,7 @@ class LoanRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByBorrower(string $value)
+    public function findByBorrower(int $value)
     {
         return $this->createQueryBuilder('l')
             ->innerJoin('l.borrower', 'k')
@@ -40,7 +40,7 @@ class LoanRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByBook(string $value)
+    public function findByBook(int $value)
     {
         return $this->createQueryBuilder('l')
             ->innerJoin('l.book', 'k')
@@ -74,7 +74,6 @@ class LoanRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.returnDate IS NULL')
-            // ->setParameter('val', $value)
             ->getQuery()
             ->getResult()
         ;

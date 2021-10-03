@@ -181,4 +181,13 @@ class Book
 
         return $this;
     }
+
+    public function isAvailable(): bool{
+        foreach ($this->getLoans as $loan){
+            if ($loan->getReturnDate() == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

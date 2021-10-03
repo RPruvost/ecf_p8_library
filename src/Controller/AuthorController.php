@@ -28,9 +28,9 @@ class AuthorController extends AbstractController
         $data = $this->getDoctrine()->getRepository(Author::class)->findBy([],['id' => 'ASC']);
 
         $author = $paginator->paginate(
-            $data, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            15 // Nombre de résultats par page
+            $data, 
+            $request->query->getInt('page', 1), 
+            15
         );
         
         return $this->render('author/index.html.twig', [

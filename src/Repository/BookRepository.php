@@ -19,17 +19,20 @@ class BookRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Book::class);
     }
-    public function findByTitle($value)
+
+    public function findByGenres($value)
     {
-       return $this->createQueryBuilder('u')
-            ->andWhere('u.title LIKE :title')
-            ->setParameter('title', "%{$value}%")
-            ->orderBy('u.title', 'ASC')
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.genres', 'g')
+            ->andWhere('g.name LIKE :genre')
+            ->setParameter('genre', "%{$value}%")
+            ->orderBy('b.title', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-        public function findByAuthorID($value)
+
+    public function findByTitle(string $value)
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.title LIKE :title')
@@ -39,28 +42,19 @@ class BookRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    public function findOneByAuthor($id)
+
+    public function findByAuthor($id)
     {
         return $this->createQueryBuilder('b')
-            ->innerJoin('b.author', 'a')
-            ->andWhere('a.id = :author')
-            ->setParameter('author', $id)
-            ->orderBy('a.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-            ;
+        ->innerJoin('b.author', 'a')
+        ->andWhere('a.id = :authorId')
+        ->setParameter('authorId', $id)
+        ->orderBy('b.title', 'ASC')
+        ->getQuery()
+        ->getResult()
+        ; 
     }
-    public function findOneByGenre($value)
-    {
-        return $this->createQueryBuilder('b')
-            ->innerJoin('b.genres', 'g')
-            ->andWhere('g.name LIKE :genres')
-            ->setParameter('genres', "%{$value}%")
-            ->orderBy('b.title', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+}
 
     // /**
     //  * @return Book[] Returns an array of Book objects
@@ -90,4 +84,4 @@ class BookRepository extends ServiceEntityRepository
         ;
     }
     */
-}
+

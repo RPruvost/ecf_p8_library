@@ -90,11 +90,10 @@ class TestController extends AbstractController
         // $book->setCodeIsbn('9790412882714');
         // $book->setAuthor($author[1]);
         // $book->addGenre($genres[5]);
-        // $entityManager->persist($book);
         // $entityManager->flush();
 
         // requête de suppression 
-        //  $deleteBook = $bookRepository->findById(123);
+        //  $deleteBook = $bookRepository->find(123);
         //  $entityManager->remove($deleteBook[0]);
         //  $entityManager->flush();
 
@@ -169,13 +168,13 @@ class TestController extends AbstractController
         // $entityManager->flush();
 
         //Requêtes de mise à jour :
-        // $thirdLoan = $loanRepository->findOneById(3);
+        // $thirdLoan = $loanRepository->find(3);
         // $thirdLoan->setReturnDate(\DateTime::createFromFormat('Y-m-d H:i:s', '2020-05-01 10:00:00'));
         // $entityManager->persist($thirdLoan);
         // $entityManager->flush();
 
         //- supprimer l'emprunt dont l'id est `42`
-        // $loan = $loanRepository->findOneById(42);
+        // $loan = $loanRepository->find(42);
         // $entityManager->remove($loan);
         // $entityManager->flush();
 
